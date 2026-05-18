@@ -4,7 +4,7 @@ function insertButton(btn) {
   let waitForSiteTimer;
 
   function waitForSite() {
-    let elems = document.getElementsByClassName('view shop coupons');
+    let elems = document.getElementsByTagName('body');
     if (elems.length) {
       clearInterval(waitForSiteTimer);
       elems[0].insertBefore(btn, elems[0].childNodes[0]);
@@ -19,17 +19,16 @@ function runSelect(event) {
   event.preventDefault();
 
   // Click on every coupon button.
-  let cells = document.getElementsByClassName('cell-badge coupon');
-  console.log(cells.length + ' coupons found');
+  let buttons = document.getElementsByClassName('clip-button');
+  console.log(buttons.length + ' coupons found');
 
   let clicked = 0;
-  for (let cell of cells) {
-    let button = cell.getElementsByTagName('button');
-    button[0].click();
+  for (let button of buttons) {
+    button.click();
     clicked++;
   }
 
-  console.log(clicked + ' coupons clicked');
+  alert(`Clicked on ${clicked} coupons`);
 }
 
 function init() {
@@ -37,9 +36,23 @@ function init() {
   let newbutton = document.createElement('button');
   newbutton.name = 'clip_all_coupons';
   newbutton.id = 'clip_all_coupons';
-  newbutton.style.cssText = 'background-color: #E82A24; color: #fff; font-weight: 700; border: none; padding: 6px 10px; cursor: pointer; margin: 5px';
+  newbutton.style.cssText = 'background-color: #fff; color: #E82A24; font-weight: 700; border: solid #E82A24; padding: 6px 10px; cursor: pointer; margin: 10px; width: 100%';
   newbutton.appendChild(document.createTextNode('Clip All Coupons'));
   newbutton.addEventListener('click', runSelect);
+
+  newbutton.addEventListener('mouseenter',
+    () => {
+      newbutton.style.color = '#fff';
+      newbutton.style.backgroundColor = '#E82A24';
+    }
+  );
+
+  newbutton.addEventListener('mouseleave',
+    () => {
+      newbutton.style.color = '#E82A24';
+      newbutton.style.backgroundColor = '#fff';
+    }
+  );
 
   insertButton(newbutton);
 }

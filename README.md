@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a Chrome extension that adds a "Clip All Coupons" button to the Wegmans [Digital Coupons](https://shop.wegmans.com/shop/coupons) page. The Javascript action on this button will click on all the coupons in one shot.
+This is a Chrome extension that adds a "Clip All Coupons" button to the Wegmans [Digital Coupons](https://www.wegmans.com/shop/coupons) page. The Javascript action on this button will click on all the coupons in one shot.
 
 ## Installation
 
@@ -14,4 +14,4 @@ Click on "Load unpacked extension" and navigate to the folder in which you clone
 
 ## Usage
 
-Once you've installed and enabled this extension, go to the Wegmans Digital Coupons page and find the "Clip All Coupons" button on the top left corner of the Digital Coupons grid. Click on it and it will clip all the coupons.
+Once you've installed and enabled this extension, go to the Wegmans Digital Coupons page and find the "Clip All Coupons" button at the top of the Digital Coupons page. Click on it and it will clip all the coupons.
