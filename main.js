@@ -1,20 +1,5 @@
 // jshint esversion: 8
 
-function insertButton(btn) {
-  let waitForSiteTimer;
-
-  function waitForSite() {
-    let elems = document.getElementsByTagName('body');
-    if (elems.length) {
-      clearInterval(waitForSiteTimer);
-      elems[0].insertBefore(btn, elems[0].childNodes[0]);
-    }
-  }
-
-  // Wait for site to finish loading before inserting button.
-  waitForSiteTimer = setInterval(waitForSite, 100);
-}
-
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -69,7 +54,9 @@ function init() {
     }
   );
 
-  insertButton(newbutton);
+  // Insert button at top of page.
+  let elems = document.getElementsByTagName('body');
+  elems[0].insertBefore(newbutton, elems[0].childNodes[0]);
 }
 
 init();
