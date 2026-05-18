@@ -8,11 +8,15 @@ async function runSelect(event) {
   event.preventDefault();
 
   // Keep scrolling until all buttons show up.
+
   let buttons = document.getElementsByClassName('clip-button');
   let btnCount = buttons.length;
+
   for (;;) {
-    buttons[buttons.length-1].scrollIntoView({ block: 'center' });
+    // scroll to bottom
+    window.scrollTo(0, document.body.scrollHeight);
     await sleep(500);
+
     buttons = document.getElementsByClassName('clip-button');
     if (buttons.length <= btnCount) break;
     btnCount = buttons.length;
