@@ -15,11 +15,26 @@ function insertButton(btn) {
   waitForSiteTimer = setInterval(waitForSite, 100);
 }
 
-function runSelect(event) {
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function runSelect(event) {
   event.preventDefault();
 
-  // Click on every coupon button.
+  // Keep scrolling until all buttons show up.
   let buttons = document.getElementsByClassName('clip-button');
+  let btnCount = buttons.length;
+  for (;;) {
+    buttons[buttons.length-1].scrollIntoView({ block: 'center' });
+    await sleep(500);
+    buttons = document.getElementsByClassName('clip-button');
+    if (buttons.length <= btnCount) break;
+    btnCount = buttons.length;
+  }
+
+  // Click on every coupon button.
+  buttons = document.getElementsByClassName('clip-button');
   console.log(buttons.length + ' coupons found');
 
   let clicked = 0;
