@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Wegmans - Clip all digital coupons",
-    "version": "0.0.3",
+    "version": "0.0.4",
 
     "description": "Clip all digital coupons on Wegmans website",
 
@@ -12,8 +12,7 @@
     "content_scripts": [
 	{
 	    "matches": [
-		"https://www.wegmans.com/shop/coupons",
-		"https://wegmans.com/shop/coupons"
+		"https://*.wegmans.com/*"
 	    ],
 	    "js": ["main.js"]
 	}
