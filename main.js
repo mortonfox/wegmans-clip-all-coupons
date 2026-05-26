@@ -1,6 +1,8 @@
 // jshint esversion: 8
 
 const BUTTON_ID = 'clip_all_coupons';
+const BTN_COUNT_HISTORY = 3;
+const COUPON_WAIT_MS = 750;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -14,16 +16,20 @@ async function runSelect(event) {
   // Keep scrolling until all buttons show up.
 
   let buttons = document.getElementsByClassName(COUPON_CLASS);
-  let btnCount = buttons.length;
+  let btnCountHistory = [];
 
   for (;;) {
     // scroll to bottom
     window.scrollTo(0, document.body.scrollHeight);
-    await sleep(500);
+    await sleep(COUPON_WAIT_MS);
 
     buttons = document.getElementsByClassName(COUPON_CLASS);
-    if (buttons.length <= btnCount) break;
-    btnCount = buttons.length;
+
+    btnCountHistory.push(buttons.length);
+    if (btnCountHistory.length > BTN_COUNT_HISTORY) btnCountHistory.shift();
+
+    // Keep scrolling until we see the same button count BTN_COUNT_HISTORY times in a row.
+    if (btnCountHistory.length >= BTN_COUNT_HISTORY && btnCountHistory.every(c => c == btnCountHistory[0])) break;
   }
 
   // Click on every coupon button.
@@ -35,6 +41,10 @@ async function runSelect(event) {
     button.click();
     clicked++;
   }
+
+  // scroll back to top
+  window.scrollTo(0, 0);
+  await sleep(COUPON_WAIT_MS);
 
   alert(`Clicked on ${clicked} coupons`);
 }

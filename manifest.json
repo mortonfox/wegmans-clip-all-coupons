@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Wegmans - Clip all digital coupons",
-    "version": "0.0.4",
+    "version": "0.0.5",
 
     "description": "Clip all digital coupons on Wegmans website",
 
