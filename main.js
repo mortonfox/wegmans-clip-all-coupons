@@ -11,7 +11,7 @@ function sleep(ms) {
 async function runSelect(event) {
   event.preventDefault();
 
-  const COUPON_CLASS = 'clip-button';
+  const COUPON_CLASS = 'enhanced-clip-button';
 
   // Keep scrolling until all buttons show up.
 
